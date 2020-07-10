@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+    <ul class="navbar-nav">
+    {{#if isIndex}}
+        <li class="nav-item">
+            <a href="/" class="nav-link active">To-do list</a>
+        </li>
+    {{else}}
+        <li class="nav-item">
+            <a href="/" class="nav-link">To-do list</a>
+        </li>
+    {{/if}}
+    {{#if isCreate}}
+        <li class="nav-item">
+            <a href="/create" class="nav-link active">Add new</a>
+        </li>
+    {{else}}
+        <li class="nav-item">
+            <a href="/create" class="nav-link">Add new</a>
+        </li>
+    {{/if}}
+    </ul>
+</nav>

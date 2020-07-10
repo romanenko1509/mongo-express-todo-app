@@ -1,0 +1,46 @@
+<h2>To-do list</h2>
+
+{{#if todos.length}}
+<ul class="list-unstyled">
+    {{#each todos}}
+        <li class="todo">
+            <label>
+                <form action="/complete" method="POST">
+                {{#if completed}}
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" checked name="completed">
+                    </div>
+                    <span class="completed">{{title}}</span>
+                {{else}}
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" name="completed">
+                    </div>
+                    <span>{{title}}</span>
+                {{/if}}
+                <input type="hidden" value="{{_id}}" name="id">
+                <button type="submit" class="btn btn-sm btn-success">Update</button>
+                </form>
+                <form action="/delete" method="POST" class="ml-1">
+                    <input type="hidden" value="{{_id}}" name="id">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            </label>
+        </li>    
+    {{/each}}
+</ul>
+{{else}}
+    <p>No task!</p>
+{{/if}}
+
+<script>
+    const checkboxes = document.querySelectorAll('.custom-control-input');
+    for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].addEventListener('change', (e) => {
+            if (e.target.closest('label').querySelector('span').classList.contains('completed')) {
+                e.target.closest('label').querySelector('span').classList.remove('completed')
+            } else {
+                e.target.closest('label').querySelector('span').classList.add('completed')
+            }
+        });
+    }
+</script>
